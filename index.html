@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohan B Nair | Mechanical Engineer & Renewable Energy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+  :root {
+    --navy: #05091A;
+    --navy2: #0B1330;
+    --amber: #F5A623;
+    --amber-light: #FFD080;
+    --white: #F8F8F8;
+    --slate: #7A869A;
+    --slate-light: #B0BAC8;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(5,9,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 800;
+    color: var(--amber); letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    color: var(--slate-light); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 420px;
+    gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: 100px; padding: 0.4rem 1rem;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--amber); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .dot-pulse {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--amber);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 1.2rem;
+  }
+  h1 span { color: var(--amber); }
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.7;
+    color: var(--slate-light); max-width: 520px; margin-bottom: 2.5rem;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--amber); color: var(--navy);
+    border: none; border-radius: 8px;
+    padding: 0.85rem 1.8rem; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,166,35,0.4); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.85rem 1.8rem; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; letter-spacing: 0.02em;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+
+  /* Photo card */
+  .hero-photo-wrap {
+    position: relative; display: flex; justify-content: center;
+  }
+  .photo-ring {
+    width: 340px; height: 340px; border-radius: 50%;
+    border: 3px solid var(--amber);
+    padding: 6px; position: relative;
+    animation: spin-ring 20s linear infinite;
+    background: conic-gradient(var(--amber) 60deg, transparent 60deg 300deg, var(--amber) 300deg);
+  }
+  @keyframes spin-ring { to { transform: rotate(360deg); } }
+  .photo-inner {
+    width: 100%; height: 100%; border-radius: 50%;
+    overflow: hidden; background: var(--navy2);
+    border: 4px solid var(--navy);
+    animation: spin-ring 20s linear infinite reverse; /* counter-rotate so photo stays still */
+  }
+  .photo-inner img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .badge-card {
+    position: absolute;
+    background: var(--navy2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 0.7rem 1rem;
+    font-size: 0.78rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    white-space: nowrap;
+  }
+  .badge-card .icon { font-size: 1.1rem; }
+  .badge1 { top: 10px; right: -30px; }
+  .badge2 { bottom: 30px; left: -30px; }
+
+  /* ─── SOLAR BG ANIMATION ─── */
+  .solar-bg {
+    position: absolute; inset: 0; z-index: 0;
+    overflow: hidden; pointer-events: none;
+  }
+  .solar-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.15;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--amber); top: -100px; right: -100px; animation: drift1 12s ease-in-out infinite alternate; }
+  .orb2 { width: 350px; height: 350px; background: #3B82F6; bottom: -50px; left: 10%; animation: drift2 10s ease-in-out infinite alternate; }
+  @keyframes drift1 { to { transform: translate(-40px, 40px); } }
+  @keyframes drift2 { to { transform: translate(40px, -30px); } }
+  .hero-grid { position: relative; z-index: 1; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex; gap: 0; max-width: 1200px; margin: 0 auto 0;
+  }
+  .stat {
+    flex: 1; text-align: center; padding: 0 2rem;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+    color: var(--amber); display: block;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--slate); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ─── SECTIONS COMMON ─── */
+  section { padding: 6rem 3rem; }
+  .section-wrap { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--amber); margin-bottom: 0.8rem;
+  }
+  h2 {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-lead { color: var(--slate-light); font-size: 1rem; line-height: 1.7; max-width: 560px; margin-bottom: 3rem; }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--navy2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--slate-light); line-height: 1.8; margin-bottom: 1rem; font-size: 0.97rem; }
+  .info-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .pill {
+    background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 100px; padding: 0.35rem 0.9rem;
+    font-size: 0.78rem; font-weight: 600; color: var(--amber-light);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 6px; top: 8px; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2rem; }
+  .timeline-dot {
+    position: absolute; left: -2rem; top: 4px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--navy2); border: 2px solid var(--amber);
+  }
+  .timeline-year {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--amber); margin-bottom: 0.2rem;
+  }
+  .timeline-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.1rem; }
+  .timeline-sub { font-size: 0.82rem; color: var(--slate); font-style: italic; }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--navy); }
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .exp-card:hover { border-color: rgba(245,166,35,0.4); transform: translateY(-4px); }
+  .exp-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--amber), var(--amber-light));
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.5rem; }
+  .exp-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; }
+  .exp-company { color: var(--amber); font-size: 0.9rem; font-weight: 600; margin-top: 0.2rem; }
+  .exp-date { font-size: 0.78rem; color: var(--slate); background: var(--border); border-radius: 100px; padding: 0.3rem 0.9rem; white-space: nowrap; }
+  .exp-bullets { list-style: none; padding: 0; }
+  .exp-bullets li {
+    display: flex; gap: 0.75rem; align-items: start;
+    color: var(--slate-light); font-size: 0.9rem; line-height: 1.6;
+    margin-bottom: 0.7rem; padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-bullets li:last-child { border-bottom: none; margin-bottom: 0; }
+  .bullet-arrow { color: var(--amber); flex-shrink: 0; margin-top: 0.2rem; }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--navy2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .skill-group {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.8rem;
+    transition: border-color 0.3s;
+  }
+  .skill-group:hover { border-color: rgba(245,166,35,0.3); }
+  .skill-group-title {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--amber); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-item { margin-bottom: 0.85rem; }
+  .skill-name-row { display: flex; justify-content: space-between; margin-bottom: 0.35rem; font-size: 0.85rem; }
+  .skill-pct { color: var(--slate); font-size: 0.78rem; }
+  .skill-bar { height: 4px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--amber), var(--amber-light));
+    width: 0; transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+  .tag {
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-radius: 6px; padding: 0.25rem 0.6rem;
+    font-size: 0.74rem; color: var(--slate-light);
+  }
+
+  /* ─── CERTIFICATIONS ─── */
+  #certifications { background: var(--navy); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.5rem;
+    transition: all 0.3s; position: relative;
+  }
+  .cert-card:hover { border-color: rgba(245,166,35,0.4); transform: translateY(-3px); }
+  .cert-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .cert-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .cert-org { font-size: 0.8rem; color: var(--amber); font-weight: 600; margin-bottom: 0.5rem; }
+  .cert-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; }
+
+  /* ─── ACHIEVEMENTS ─── */
+  #achievements { background: var(--navy2); }
+  .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .ach-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+    display: flex; gap: 1.2rem; align-items: start;
+    transition: all 0.3s;
+  }
+  .ach-card:hover { border-color: rgba(245,166,35,0.4); }
+  .ach-icon-wrap {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .ach-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .ach-desc { font-size: 0.82rem; color: var(--slate-light); line-height: 1.6; }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--navy);
+    text-align: center; padding: 6rem 3rem;
+  }
+  .contact-wrap { max-width: 640px; margin: 0 auto; }
+  .contact-wrap h2 { margin-bottom: 1rem; }
+  .contact-wrap p { color: var(--slate-light); margin-bottom: 2.5rem; font-size: 1rem; line-height: 1.7; }
+  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
+  .contact-link {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem 1.4rem;
+    text-decoration: none; color: var(--white);
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.9rem; font-weight: 600;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+  .contact-link .link-icon { font-size: 1.2rem; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy2); border-top: 1px solid var(--border);
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; color: var(--slate);
+  }
+
+  /* ─── CURSOR DOT ─── */
+  .cursor-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber); position: fixed; z-index: 9999;
+    pointer-events: none; transform: translate(-50%, -50%);
+    transition: transform 0.1s, opacity 0.2s;
+  }
+  .cursor-ring {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid rgba(245,166,35,0.5);
+    position: fixed; z-index: 9998; pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease, width 0.3s, height 0.3s;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-photo-wrap { order: -1; }
+    .photo-ring { width: 220px; height: 220px; }
+    .badge1, .badge2 { display: none; }
+    .stats-bar { padding: 1.5rem; flex-wrap: wrap; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .ach-grid { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MBN</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Training</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="solar-bg">
+    <div class="solar-orb orb1"></div>
+    <div class="solar-orb orb2"></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="dot-pulse"></span>
+        Open to Opportunities
+      </div>
+      <h1>Mohan<br><span>B Nair</span></h1>
+      <p class="hero-sub">
+        Mechanical Engineer & M.Tech student in Renewable Energy — bridging aerospace-grade quality discipline with the future of solar energy systems across India.
+      </p>
+      <div class="hero-cta">
+        <a href="mailto:mohannair1999@gmail.com" class="btn-primary">
+          ✉ Get in Touch
+        </a>
+        <a href="#experience" class="btn-outline">
+          View Experience →
+        </a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-ring">
+        <div class="photo-inner">
+          <img src="data:image/jpeg;base64,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" alt="Mohan B Nair" />
+        </div>
+      </div>
+      <div class="badge-card badge1">
+        <span class="icon">⚡</span>
+        <div>
+          <div style="font-size:0.85rem;font-weight:700">M.Tech</div>
+          <div style="font-size:0.7rem;color:var(--slate)">Renewable Energy</div>
+        </div>
+      </div>
+      <div class="badge-card badge2">
+        <span class="icon">🛡️</span>
+        <div>
+          <div style="font-size:0.85rem;font-weight:700">AS 9100</div>
+          <div style="font-size:0.7rem;color:var(--slate)">Aerospace Quality</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div style="padding: 0 3rem;">
+  <div class="stats-bar reveal">
+    <div class="stat">
+      <span class="stat-num" data-count="9.0">0</span>
+      <span class="stat-label">M.Tech CGPA</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="2">0</span>
+      <span class="stat-label">Years at BrahMos</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="100">0</span>
+      <span class="stat-label">% Compliance Rate</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" data-count="5">0</span>
+      <span class="stat-label">Technical Domains</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-eyebrow">About Me</div>
+        <h2>Engineer who<br>connects <span style="color:var(--amber)">precision</span><br>with purpose</h2>
+        <p>I'm a Mechanical Engineer currently pursuing M.Tech in Renewable Energy at the College of Engineering, Trivandrum (CGPA: 9.0). My research focuses on developing insulation panels using natural fibres for energy-efficient buildings.</p>
+        <p>With 2+ years at BrahMos Aerospace, I brought aerospace-grade quality discipline to PSLV and missile programs — now channelling that precision into solar energy and green tech.</p>
+        <p>Proficient in PVsyst for solar system design and simulation, with hands-on renewable energy experience via my ANERT internship.</p>
+        <div class="info-pills">
+          <span class="pill">📍 Thiruvananthapuram, Kerala</span>
+          <span class="pill">📱 +91 623 545 7155</span>
+          <span class="pill">✉ mohannair1999@gmail.com</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-eyebrow" style="margin-bottom:1.5rem">Education Timeline</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024 – 2026</div>
+            <div class="timeline-title">M.Tech in Renewable Energy</div>
+            <div class="timeline-sub">College of Engineering, Trivandrum (CET) · CGPA: 9.0</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2022 – 2024</div>
+            <div class="timeline-title">Engineer – Quality Assurance</div>
+            <div class="timeline-sub">BrahMos Aerospace, Thiruvananthapuram</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2017 – 2021</div>
+            <div class="timeline-title">B.Tech in Mechanical Engineering</div>
+            <div class="timeline-sub">Mohandas College of Engineering, Kerala · CGPA: 7.87</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Work Experience</div>
+    <h2>Where I've made<br>an <span style="color:var(--amber)">impact</span></h2>
+    <p class="section-lead">Two years of industry-grade experience at one of India's most prestigious aerospace programs.</p>
+    <div class="reveal">
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Engineer – Quality Assurance</div>
+            <div class="exp-company">BrahMos Aerospace Thiruvananthapuram Limited (BATL)</div>
+          </div>
+          <div class="exp-date">April 2022 – June 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>
+            <span class="bullet-arrow">▸</span>
+            <span>Led end-to-end quality assurance for BrahMos missile integration and PSLV rocket stage assembly — coordinating multi-stage inspection, technical documentation, and final system approval.</span>
+          </li>
+          <li>
+            <span class="bullet-arrow">▸</span>
+            <span>Ensured 100% regulatory compliance with AS 9100 Rev D aerospace quality standards; developed Quality Assurance Plans and managed non-conformity reports.</span>
+          </li>
+          <li>
+            <span class="bullet-arrow">▸</span>
+            <span>Conducted internal and process audits, systematically reducing deviations and improving quality control — experience directly applicable to solar system quality checks and post-installation performance validation.</span>
+          </li>
+          <li>
+            <span class="bullet-arrow">▸</span>
+            <span>Coordinated cross-functional teams across inspection, documentation, and approval stages — demonstrating strong project leadership and communication capabilities.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Technical Skills</div>
+    <h2>A toolkit built for<br><span style="color:var(--amber)">clean energy</span></h2>
+    <p class="section-lead">From solar simulation to aerospace-grade quality standards — a versatile skill set across energy and engineering domains.</p>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <div class="skill-group-title">⚡ Solar Design & Simulation</div>
+        <div class="skill-item">
+          <div class="skill-name-row"><span>PVsyst</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name-row"><span>EQuest (Energy Simulation)</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🔧 Mechanical Design & Analysis</div>
+        <div class="skill-item">
+          <div class="skill-name-row"><span>ANSYS Fluent</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name-row"><span>AutoCAD / Autodesk Inventor</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name-row"><span>LabVIEW</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🛡️ Quality & Compliance</div>
+        <div class="tags">
+          <span class="tag">TQM</span>
+          <span class="tag">PFMEA</span>
+          <span class="tag">GD&T</span>
+          <span class="tag">AS 9100 Rev D</span>
+          <span class="tag">Technical Auditing</span>
+          <span class="tag">NCR Management</span>
+          <span class="tag">QA Planning</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🔍 Inspection & Testing</div>
+        <div class="tags">
+          <span class="tag">NDT Level II</span>
+          <span class="tag">Welder Qualification</span>
+          <span class="tag">Process Auditing</span>
+          <span class="tag">Performance Validation</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <div class="skill-group-title">🤝 Soft Skills</div>
+        <div class="tags">
+          <span class="tag">Leadership</span>
+          <span class="tag">Project Coordination</span>
+          <span class="tag">Cross-functional Teams</span>
+          <span class="tag">Client Communication</span>
+          <span class="tag">Documentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Training & Certifications</div>
+    <h2>Learning that <span style="color:var(--amber)">transfers</span></h2>
+    <p class="section-lead">Hands-on credentials that bridge aerospace precision with renewable energy application.</p>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-name">PG Diploma in Non-Destructive Testing (Level II) & Marine Production</div>
+        <div class="cert-org">Ivion Academy, Kochi</div>
+        <div class="cert-desc">Certified inspection skills applicable to solar panel and mounting structure quality assessment and performance validation.</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">☀️</div>
+        <div class="cert-name">Internship – Renewable Energy Systems</div>
+        <div class="cert-org">ANERT (Agency for New and Renewable Energy Research and Technology)</div>
+        <div class="cert-desc">Hands-on exposure to solar energy systems, renewable project planning, and government energy initiatives in Kerala.</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">📡</div>
+        <div class="cert-name">Project Training – Sensor & Data Acquisition</div>
+        <div class="cert-org">Tyrannus Innovative Engineering</div>
+        <div class="cert-desc">Training in statics and dynamics sensor integration — directly applicable to solar system performance monitoring and data logging.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Achievements</div>
+    <h2>Standing out <span style="color:var(--amber)">matters</span></h2>
+    <div class="ach-grid reveal">
+      <div class="ach-card">
+        <div class="ach-icon-wrap">🏆</div>
+        <div>
+          <div class="ach-title">Top 30 Finalist – Reboot Kerala Hackathon 2020</div>
+          <div class="ach-desc">Kerala Start-up Mission · Home Affairs Sector. Demonstrated innovation, problem-solving, and entrepreneurial thinking at a competitive state-level platform.</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-icon-wrap">📣</div>
+        <div>
+          <div class="ach-title">Chief Marketing Officer – IEDC (2019)</div>
+          <div class="ach-desc">Innovation & Entrepreneurship Development Center, Mohandas College of Engineering. Built business outreach and communication skills directly relevant to client-facing solar project roles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap reveal">
+    <div class="section-eyebrow" style="display:inline-block;margin-bottom:0.8rem">Let's Connect</div>
+    <h2>Ready to power<br><span style="color:var(--amber)">the future</span> together?</h2>
+    <p>Whether you're looking for a renewable energy engineer, solar project lead, or quality-focused professional — I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:mohannair1999@gmail.com" class="contact-link">
+        <span class="link-icon">✉</span> mohannair1999@gmail.com
+      </a>
+      <a href="tel:+916235457155" class="contact-link">
+        <span class="link-icon">📱</span> +91 623 545 7155
+      </a>
+      <a href="#" class="contact-link">
+        <span class="link-icon">📍</span> Thiruvananthapuram, Kerala
+      </a>
+    </div>
+    <a href="#hero" class="btn-primary" style="display:inline-flex;">↑ Back to Top</a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & crafted for <strong style="color:var(--amber)">Mohan B Nair</strong> · Mechanical Engineer & Renewable Energy Specialist</p>
+</footer>
+
+<script>
+  // ─── CURSOR ───
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  });
+  function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width = '50px'; ring.style.height = '50px'; });
+    el.addEventListener('mouseleave', () => { ring.style.width = '32px'; ring.style.height = '32px'; });
+  });
+
+  // ─── SCROLL REVEAL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  // ─── SKILL BARS ───
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-group').forEach(g => barObs.observe(g));
+
+  // ─── COUNTER ANIMATION ───
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseFloat(el.dataset.count);
+          const isDecimal = target % 1 !== 0;
+          let start = 0;
+          const duration = 1800;
+          const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            const val = target * ease;
+            el.textContent = isDecimal ? val.toFixed(1) : Math.floor(val) + (target === 100 ? '%' : '+');
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = isDecimal ? target : target + (target === 100 ? '%' : '+');
+          };
+          requestAnimationFrame(step);
+        });
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stats-bar').forEach(s => counterObs.observe(s));
+
+  // ─── NAV SCROLL EFFECT ───
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50 ? 'rgba(5,9,26,0.98)' : 'rgba(5,9,26,0.85)';
+  });
+</script>
+</body>
+</html>
